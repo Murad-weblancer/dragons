@@ -1,0 +1,47 @@
+.dragons{
+    display: flex;
+    // align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    margin: 50px 0;
+    @media(max-width:992px){
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+    &-single{
+        @media(max-width:992px){
+            width: 90%;
+            margin-bottom: 20px;
+          }
+        width: 43%;
+        img{
+            width: 100%;
+            object-fit: contain;
+            // border: 1px solid red;
+        }
+        h3{
+            margin: 20px 0;
+        }
+        p{
+            font-size: 14px;
+            line-height: 20px;
+            margin-bottom: 15px;
+        }
+        &-links{
+            display: flex;
+            align-items: center;
+            a{
+                color: var(--pink);
+                margin-right: 20px;
+                transition: .1s ease-in-out;
+                &:hover{
+                   font-weight: 600;
+                }
+             }
+        }
+    }
+}
+.load{
+    min-height: 500px;
+}
