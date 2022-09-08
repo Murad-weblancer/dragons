@@ -3,7 +3,7 @@ import { useGetDragonQuery } from "../redux/rtk/spaceDragonApi";
 import "./Space.scss";
 import Slider from "react-slick";
 import { BsBackspace } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export const SpaceDragon = () => {
