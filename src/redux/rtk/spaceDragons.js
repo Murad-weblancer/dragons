@@ -7,7 +7,7 @@ export const dragonsApi = createApi({
     baseQuery:fetchBaseQuery({baseUrl:'https://api.spacexdata.com'}),
     endpoints:builder=>({
         getDragons:builder.query({
-            query:(id)=>`/v4/dragons`
+            query:()=>`/v4/dragons`
         })
     })
 })
