@@ -13,6 +13,9 @@ export const SignUp = () => {
   const [confirm, setConfirm] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const pdef = (e)=>{
+    e.preventDefault()
+  }
   const handlRegister = (email, password, confirm) => {
     const auth = getAuth();
     if (!email) {
@@ -40,7 +43,7 @@ export const SignUp = () => {
     }
   };
   return (
-    <div className="register">
+    <form className="register" onSubmit={pdef}>
       <div>
         <h1> Sign up </h1>
       </div>
@@ -69,6 +72,6 @@ export const SignUp = () => {
         <h5>Already have account?</h5>
         <Link to="/login">Sign in</Link>
       </div>
-    </div>
+    </form>
   );
 };

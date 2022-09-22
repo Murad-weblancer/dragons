@@ -7,6 +7,9 @@ import { toast } from "react-toastify";
 export const ResetPassword = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
+  const pdef = (e)=>{
+    e.preventDefault()
+  }
   const handleChange = (email) => {
     const auth = getAuth();
     sendPasswordResetEmail(auth, email)
@@ -20,7 +23,7 @@ export const ResetPassword = () => {
       });
   };
   return (
-    <div className="reset-main">
+    <form className="reset-main" onSubmit={pdef} >
       <div className="reset">
         <div>
           <h1> Reset Password </h1>
@@ -38,6 +41,6 @@ export const ResetPassword = () => {
           <Link to="/register">Sign up</Link>
         </div>
       </div>
-    </div>
+    </form>
   );
 };

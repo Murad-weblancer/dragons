@@ -12,6 +12,9 @@ export const SignIn = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate()
+  const pdef = (e)=>{
+    e.preventDefault()
+  }
   const handleLogin = (email, password) => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
@@ -30,7 +33,7 @@ export const SignIn = () => {
       });
   };
   return (
-    <div className="login">
+    <form className="login" onSubmit={pdef}>
       <div>
         <h1> Sign in </h1>
       </div>
@@ -53,8 +56,8 @@ export const SignIn = () => {
         <Link to="/register">Sign up</Link>
       </div>
       <div className="login-forget">
-        <Link to="/resetpass">Forget password? </Link>
+        <Link to="/resetpass" style={{color:'blue'}}>Forget password? </Link>
       </div>
-    </div>
+    </form>
   );
 };

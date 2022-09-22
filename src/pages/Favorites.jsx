@@ -10,7 +10,7 @@ export const Favorites = () => {
   return dragons.length > 0 ? (
     <div>
       {dragons.map((dragon) => (
-        <div className="favorites">
+        <div className="favorites" key={dragon.id}>
           <Link to={`/${dragon.id}`}>
             <div className="favorites-con">
               <img src={dragon.img} alt="" />

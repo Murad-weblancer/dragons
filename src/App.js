@@ -13,21 +13,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "./redux/slices/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useGetDragonsQuery } from "./redux/rtk/spaceDragons";
+import { Docs } from "./pages/Docs";
 function App() {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.user);
   useEffect(() => {
     const auth = getAuth();
-    const uncub = onAuthStateChanged(auth, (currentUser) => {
-      console.log(currentUser);
+    onAuthStateChanged(auth, (currentUser) => {
+      // console.log(currentUser);
       dispatch(getUser(currentUser));
     });
-    return () => {
-      uncub();
-    };
   }, []);
-
 
   return (
     <div className="App">
@@ -42,6 +37,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/resetpass" element={<ResetPassword />} />
           <Route path="/favorites" element={<Favorites />} />
+          <Route path="/docs" element={<Docs />} />
         </Routes>
       </div>
     </div>

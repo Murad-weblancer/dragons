@@ -13,11 +13,14 @@ export const Single = () => {
   const { id } = useParams();
   const { user } = useSelector((state) => state.user);
   const { dragons } = useSelector((state) => state.fav);
+  const [loading, setLoading] = useState(true);
+
   // const somedragons = dragons.some(dragon=>dragon.id === dragonParams.id)
   const dispatch = useDispatch();
 
   useEffect(() => {
     const dragonsApi = async () => {
+      setLoading(true);
       try {
         const { data } = await axios.get(
           `https://api.spacexdata.com/v4/dragons/${id}`
@@ -26,9 +29,14 @@ export const Single = () => {
       } catch (error) {
         console.log(error);
       }
+      setLoading(false);
     };
     dragonsApi();
+    setLoading(false);
   }, []);
+  if (loading) {
+    return "asdasdasd";
+  }
   const favorites = () => {
     const items = {
       name: dragonParams.name,
@@ -139,7 +147,6 @@ export const Single = () => {
       </div>
       <h1 className="single-trunk"> Trunk</h1>
       <div className="trunk">
-        
         <p>
           Launch payload mass:{" "}
           <span>
@@ -182,12 +189,14 @@ export const Single = () => {
       <div className="links">
         <a href={dragonParams.wikipedia}> Go to wikipedia </a>
         <Link to={"/"}> Go back </Link>
-        {user &&
-          (dragons.length === 0 ? (
-            <span onClick={favorites}> Add to fav </span>
-          ) : (
-            <Link to="/favorites">Go to fav</Link>
-          ))}
+        {user && (
+          // (dragons.length === 0 ? (
+          //   <span onClick={favorites}> Add to fav </span>
+          // ) : (
+          //   <Link to="/favorites">Go to fav</Link>
+          // ))
+          <span onClick={favorites}> Add to fav </span>
+        )}
       </div>
     </div>
   ) : (

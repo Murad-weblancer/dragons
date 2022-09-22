@@ -7,7 +7,15 @@ export const favSlice = createSlice({
   },
  reducers:{
     getDragons(state,action){
-        state.dragons.push(action.payload)
+        const findIndex = state.dragons.find(dragon=>dragon.id === action.payload.id)
+        if(findIndex){
+          findIndex.count++
+        }else{
+          state.dragons.push({
+            ...action.payload,
+            count:1
+          })
+        }
     },
     removeDragons(state,action){
         state.dragons = state.dragons.filter(obj=>obj.id !== action.payload)
