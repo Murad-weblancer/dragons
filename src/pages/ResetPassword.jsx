@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
 import { Link, useNavigate } from "react-router-dom";
@@ -7,6 +7,10 @@ import { toast } from "react-toastify";
 export const ResetPassword = () => {
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
+  const valueRef = useRef(null);
+  useEffect(() => {
+    valueRef.current.focus();
+  }, []);
   const pdef = (e)=>{
     e.preventDefault()
   }
@@ -33,6 +37,7 @@ export const ResetPassword = () => {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          ref={valueRef}
         />
 
         <button onClick={()=>handleChange(email)}>Reset</button>

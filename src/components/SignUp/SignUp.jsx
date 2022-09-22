@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./SignUp.scss";
@@ -13,13 +13,17 @@ export const SignUp = () => {
   const [confirm, setConfirm] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const pdef = (e)=>{
-    e.preventDefault()
-  }
+  const valueRef = useRef(null);
+  useEffect(() => {
+    valueRef.current.focus();
+  }, []);
+  const pdef = (e) => {
+    e.preventDefault();
+  };
   const handlRegister = (email, password, confirm) => {
     const auth = getAuth();
     if (!email) {
-      toast.info('Write email')
+      toast.info("Write email");
     } else if (password.length < 6) {
       toast.info("enter a value more than 6");
     } else if (password !== confirm) {
@@ -52,6 +56,7 @@ export const SignUp = () => {
         value={email}
         placeholder="Email"
         onChange={(e) => setEmail(e.target.value)}
+        ref={valueRef}
       />
       <input
         type="password"

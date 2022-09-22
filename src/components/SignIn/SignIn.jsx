@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
@@ -7,14 +7,19 @@ import { setUser } from "../../redux/slices/auth";
 
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
 export const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const navigate = useNavigate()
-  const pdef = (e)=>{
-    e.preventDefault()
-  }
+  const navigate = useNavigate();
+  const valueRef = useRef(null);
+  useEffect(() => {
+    valueRef.current.focus();
+  }, []);
+  const pdef = (e) => {
+    e.preventDefault();
+  };
   const handleLogin = (email, password) => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
@@ -42,6 +47,7 @@ export const SignIn = () => {
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        ref={valueRef}
       />
       <input
         type="password"
@@ -50,13 +56,15 @@ export const SignIn = () => {
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      <button onClick={()=>handleLogin(email,password)}>Sign in</button>
+      <button onClick={() => handleLogin(email, password)}>Sign in</button>
       <div className="login-bottom">
         <h5>Create an account </h5>
         <Link to="/register">Sign up</Link>
       </div>
       <div className="login-forget">
-        <Link to="/resetpass" style={{color:'blue'}}>Forget password? </Link>
+        <Link to="/resetpass" style={{ color: "blue" }}>
+          Forget password?{" "}
+        </Link>
       </div>
     </form>
   );
