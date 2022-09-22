@@ -6,12 +6,14 @@ import { useGetDragonsQuery } from "../redux/rtk/spaceDragons";
 
 export const Home = () => {
   const { data, isLoading } = useGetDragonsQuery();
+
+
   return (
     <>
       <Dragon />
       {!isLoading ? (
         <>
-        <h1 className="details">List and details</h1>
+          <h1 className="details">List and details</h1>
           <div className="dragons">
             {data.map((obj, i) => (
               <Dragons key={i} {...obj} />

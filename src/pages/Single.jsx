@@ -5,10 +5,16 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Slider from "react-slick";
 import { BsBackspace } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { getDragons, removeDragons } from "../redux/slices/favSlice";
 
 export const Single = () => {
   const [dragonParams, setDragonParams] = useState();
   const { id } = useParams();
+  const { user } = useSelector((state) => state.user);
+  const { dragons } = useSelector((state) => state.fav);
+  // const somedragons = dragons.some(dragon=>dragon.id === dragonParams.id)
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const dragonsApi = async () => {
@@ -23,6 +29,15 @@ export const Single = () => {
     };
     dragonsApi();
   }, []);
+  const favorites = () => {
+    const items = {
+      name: dragonParams.name,
+      img: dragonParams.flickr_images[0],
+      id: dragonParams.id,
+    };
+    dispatch(getDragons(items));
+  };
+
   const settings = {
     dots: true,
     infinite: true,
@@ -124,7 +139,7 @@ export const Single = () => {
       </div>
       <h1 className="single-trunk"> Trunk</h1>
       <div className="trunk">
-
+        
         <p>
           Launch payload mass:{" "}
           <span>
@@ -159,12 +174,20 @@ export const Single = () => {
           </span>
           , type: <span> {dragonParams.type} </span>, crew capacity:{" "}
           <span> {dragonParams.crew_capacity} </span>, sidewall angle deg:
-          <span> {dragonParams.sidewall_angle_deg} </span>, orbit duration yr: {dragonParams.orbit_duration_yr}, dry mass kg: {dragonParams.dry_mass_kg}, dry mass lb: {dragonParams.dry_mass_lb}.
+          <span> {dragonParams.sidewall_angle_deg} </span>, orbit duration yr:{" "}
+          {dragonParams.orbit_duration_yr}, dry mass kg:{" "}
+          {dragonParams.dry_mass_kg}, dry mass lb: {dragonParams.dry_mass_lb}.
         </p>
       </div>
       <div className="links">
         <a href={dragonParams.wikipedia}> Go to wikipedia </a>
-        <Link to={'/'}> Go back </Link>
+        <Link to={"/"}> Go back </Link>
+        {user &&
+          (dragons.length === 0 ? (
+            <span onClick={favorites}> Add to fav </span>
+          ) : (
+            <Link to="/favorites">Go to fav</Link>
+          ))}
       </div>
     </div>
   ) : (

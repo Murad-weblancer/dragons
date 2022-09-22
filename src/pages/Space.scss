@@ -53,10 +53,12 @@
   align-items: center;
   // margin-top: 50px;
   margin-bottom: 20px;
-  a {
+  a,
+  span {
     color: var(--pink);
     margin-right: 20px;
     transition: 0.1s ease-in-out;
+    cursor: pointer;
     &:hover {
       font-weight: 600;
     }
@@ -104,20 +106,20 @@
   &-flex {
     margin: 70px 0;
   }
-  &-trunk{
+  &-trunk {
     text-align: center;
     margin-bottom: 50px;
   }
-  .trunk{
+  .trunk {
     // display: flex;
     width: 100%;
-    p{
+    p {
       font-size: 16px;
       font-weight: 400;
       line-height: 22px;
       color: var(--secondary);
       margin-bottom: 20px;
-      span{
+      span {
         font-weight: 700;
       }
     }
@@ -150,15 +152,113 @@
     display: none !important;
   }
 }
-.slick-dots{
+.slick-dots {
   // background: white;
-  li{
-    button::before{
+  li {
+    button::before {
       color: white !important;
       // background: white !important;
     }
   }
 }
-.back{
+.back {
   margin-top: 30px;
+}
+.reset-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+}
+.reset {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 30%;
+  @media(max-width: 992px){
+    width: 50%;
+  }
+  @media(max-width: 768px){
+    width: 70%;
+  }
+  @media(max-width: 480px){
+    width: 90%;
+  }
+  box-shadow: 0 0 4px white;
+  padding: 20px 12px;
+  &-bottom {
+    margin-top: 20px;
+    h5 {
+      margin-bottom: 10px;
+    }
+    a {
+      font-size: 14px;
+      color: blue;
+    }
+  }
+  h1 {
+    margin-bottom: 20px;
+  }
+  input {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    padding-left: 15px;
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid gray;
+    color: black;
+  }
+  button {
+    outline: none;
+    padding: 8px 24px;
+    border-radius: 4px;
+    background: darkcyan;
+    border: 1px solid darkcyan;
+    font-size: 700;
+    cursor: pointer;
+    color: white;
+  }
+}
+.favorites{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 0 4px white;
+  margin-top: 70px;
+  padding: 12px;
+  &-con{
+
+  }
+  span{
+    cursor: pointer;
+    color: red;
+  }
+  img{
+    width: 150px;
+  }
+}
+.non-fav{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+  a{
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: 20px; 
+    border: 1px solid white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    color: black;
+    background: white;
+  }
+  &-con{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1{
+      text-align: center;
+    }
+  }
 }

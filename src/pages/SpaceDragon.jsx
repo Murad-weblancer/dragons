@@ -9,11 +9,11 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 export const SpaceDragon = () => {
   const { data, isLoading, isError } = useGetDragonQuery();
 
-  if(isError){
-    return alert('Something went wrong):')
+  if (isError) {
+    return alert("Something went wrong):");
   }
   const settings = {
-    dots:true,
+    dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -39,7 +39,12 @@ export const SpaceDragon = () => {
       </Link>
       {!isLoading ? (
         <>
-        <h3 style={{textAlign:'center', margin:'30px 0', fontWeight:'500'}}> {data.name} </h3>
+          <h3
+            style={{ textAlign: "center", margin: "30px 0", fontWeight: "500" }}
+          >
+            {" "}
+            {data.name}{" "}
+          </h3>
           <Slider {...settings} className="slides">
             {data.flickr_images.map((img, i) => (
               <div key={i} className="img">
@@ -110,7 +115,6 @@ export const SpaceDragon = () => {
             <a href={data.wikipedia}> Go to wiki </a>
             <Link to="/">Go back</Link>
           </div>
-
         </>
       ) : (
         <div className="load load-slides">
