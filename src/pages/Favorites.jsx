@@ -1,11 +1,15 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { removeDragons } from "../redux/slices/favSlice";
 
 export const Favorites = () => {
   const { dragons } = useSelector((state) => state.fav);
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
+  if (!user) {
+    return <Navigate to="/" />;
+  }
 
   return dragons.length > 0 ? (
     <div>

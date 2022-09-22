@@ -3,9 +3,15 @@ import { useState } from "react";
 import { Deploy } from "../components/Docs/Deploy";
 import { Description } from "../components/Docs/Description";
 import { Environment } from "../components/Docs/Environment";
+import { Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export const Docs = () => {
   const [index, setIndex] = useState(0);
+  const { user } = useSelector((state) => state.user);
+  if (!user) {
+    return <Navigate to="/" />;
+  }
   return (
     <div className="docs">
       <div className="sidebar">
@@ -28,7 +34,7 @@ export const Docs = () => {
           <Deploy />{" "}
         </div>
         <div hidden={index != 2}>
-          <Environment/>
+          <Environment />
         </div>
       </div>
     </div>
